@@ -269,9 +269,9 @@ def analyze_populations_with_averaged_psd_bands(signals, fs, window_length, nove
         dominant_psd_peak = band_psd_mean[max_idx]
 
         band_psd_dict[band] = {
-
             'dominant_freq': dominant_freq,
-            'dominant_psd': dominant_psd_peak
+            'dominant_psd': dominant_psd_peak,
+            'band_power': float(np.sum(band_psd_mean))
         }
 
     return freqs, psd_all, auc_counts_all, dominant_freqs_all, band_psd_dict
