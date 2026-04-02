@@ -152,7 +152,7 @@ def compute_auc_and_significant_counts(freqs, psd, bands, threshold_ratio):
         band_psd = psd[band_mask]
 
         #AUC
-        auc = np.trapz(band_psd, band_freqs)
+        auc = np.trapezoid(band_psd, band_freqs) #numpy v = 2 # before: np.trapz(band_psd, band_freqs)
 
         # Frequency density
         significant_count = np.sum(band_psd > threshold)
@@ -218,8 +218,8 @@ def analyze_populations_with_averaged_psd_bands(signals, fs, window_length, nove
     nregions, timepoints = signals.shape
 
     psd_all = []
-    auc_counts_all = []
-    dominant_freqs_all = []
+    #auc_counts_all = []
+    #dominant_freqs_all = []
 
     for region_idx in range(nregions):
 
@@ -235,14 +235,14 @@ def analyze_populations_with_averaged_psd_bands(signals, fs, window_length, nove
             psd = psd/np.max(psd)
 
         # for each region compute the auc
-        auc_counts = compute_auc_and_significant_counts(freqs, psd, bands, threshold_ratio)
+        #auc_counts = compute_auc_and_significant_counts(freqs, psd, bands, threshold_ratio)
 
         # for each region compute the dominant frequency -- consder to replace with find_peaks
-        dominant_freqs = find_dominant_frequency(freqs, psd, bands)
+        #dominant_freqs = find_dominant_frequency(freqs, psd, bands)
 
 
-        auc_counts_all.append(auc_counts)
-        dominant_freqs_all.append(dominant_freqs)
+        #auc_counts_all.append(auc_counts)
+        #dominant_freqs_all.append(dominant_freqs)
         psd_all.append(psd)
 
         #print('\n')
